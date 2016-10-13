@@ -1,0 +1,3 @@
+Authors ordered by first contribution.
+
+Nicolas Tastevin <nicolas.tastevin@gmail.com>
