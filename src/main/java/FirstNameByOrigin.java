@@ -28,10 +28,11 @@ public class FirstNameByOrigin {
 
             String val = value.toString();
             String[] line = val.split(";");
-            String ori = line[2];
-            String[] origins = ori.split(",");
+            String ori = line[2]; // line[2] gives all the origins
+            String[] origins = ori.split(","); // list of string of origins
             for(String o : origins ){
-                word.set(o.trim()); // to avoid blank space front of Country
+                word.set(o.trim());
+                // trim() to avoid blank space front of orgines "  french" --> "french"
                 context.write(word, one);
 
             }

@@ -28,9 +28,9 @@ public class NumberFirstNameByNumberOrigin {
 
             String val = value.toString();
             String[] line = val.split(";");
-            String ori = line[2];
-            String[] origins = ori.split(",");
-            number.set(origins.length);
+            String ori = line[2]; // line[2] gives all the origins
+            String[] origins = ori.split(","); // list of string of origins
+            number.set(origins.length); // the length give the number of origins
             context.write(number,one);
 
         }

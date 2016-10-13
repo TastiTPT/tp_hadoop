@@ -31,7 +31,7 @@ public class ProportionMF {
 
             String val = value.toString();
             String[] line = val.split(";");
-            String gen = line[1];
+            String gen = line[1]; // line[1] gives the genders associated to the name
             String[] genders = gen.split(",");
 
 
@@ -39,6 +39,11 @@ public class ProportionMF {
                 if(g.equals("m")) {
                     number_m.set(1);
                     number_f.set(0);
+                /*
+                    set(0) is important to know the total number of name
+                    in the file and thus compute a ratio in the reducer.
+                 */
+
                 }
                 else if(g.equals("f")){
                     number_m.set(0);
@@ -62,6 +67,13 @@ public class ProportionMF {
             for (IntWritable val : values) {
                 sum += val.get();
                 size += 1;
+            /*
+            values is something like [0,1,0,1,,0....,0,1].
+            Thus we understand why it was important in the mapper to do set(0).
+            Indeed the size of the iterable gives the total number of names evaluated
+            and the sum only count the number of a gender (because we sum 1 and 0!)
+             */
+
             }
 
             context.write(key, new FloatWritable((float)sum/size));
